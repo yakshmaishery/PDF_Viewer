@@ -60,11 +60,11 @@ class Application:
         try:
             if self.FileURL!="":
                 if e.delta==120:
-                    self.Ratio+=0.1
+                    self.Ratio+=0.05
                 elif e.delta==-120:
-                    sizes=self.Ratio-0.1
+                    sizes=self.Ratio-0.05
                     if sizes>=0:
-                        self.Ratio-=0.1
+                        self.Ratio-=0.05
                     else:
                         self.Ratio=0.5
                 doc=fitz.open(self.FileURL)
