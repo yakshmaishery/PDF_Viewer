@@ -12,6 +12,7 @@ class Application:
         self.total_pdf_pages=0
         self.Ratio=0.5
         self.FullScreen_Active=False
+        self.dpi = 300/72
         pass
 
     def User_Interface(self,*args):
@@ -69,7 +70,7 @@ class Application:
                         self.Ratio=0.5
                 doc=fitz.open(self.FileURL)
                 page = doc.load_page(self.Pointer)
-                mat=fitz.Matrix(3,3)
+                mat=fitz.Matrix(self.dpi,self.dpi)
                 pix = page.get_pixmap(matrix=mat)
                 im=Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
                 H,W=im.size
@@ -93,7 +94,7 @@ class Application:
             self.root.title(self.FileName)
 
             page = doc.load_page(self.Pointer)
-            mat=fitz.Matrix(3,3)
+            mat=fitz.Matrix(self.dpi,self.dpi)
             pix = page.get_pixmap(matrix=mat)
             im=Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
             H,W=im.size
@@ -112,7 +113,7 @@ class Application:
             self.total_pdf_pages=int(doc.page_count)
             self.L1.config(text=f"Pages = {self.Pointer+1} / {self.total_pdf_pages}")
             page = doc.load_page(self.Pointer)
-            mat=fitz.Matrix(3,3)
+            mat=fitz.Matrix(self.dpi,self.dpi)
             pix = page.get_pixmap(matrix=mat)
             im=Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
             H,W=im.size
@@ -134,7 +135,7 @@ class Application:
             self.total_pdf_pages=int(doc.page_count)
             self.L1.config(text=f"Pages = {self.Pointer+1} / {self.total_pdf_pages}")
             page = doc.load_page(self.Pointer)
-            mat=fitz.Matrix(3,3)
+            mat=fitz.Matrix(self.dpi,self.dpi)
             pix = page.get_pixmap(matrix=mat)
             im=Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
             H,W=im.size
